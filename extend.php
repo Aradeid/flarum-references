@@ -12,13 +12,25 @@
 namespace Aradeid\FlarumReferences;
 
 use Flarum\Extend;
+use s9e\TextFormatter\Configurator;
 
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),
-    (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__.'/resources/less/admin.less'),
-    new Extend\Locales(__DIR__ . '/resources/locale')
+    // (new Extend\Frontend('admin'))
+    //     ->js(__DIR__.'/js/dist/admin.js')
+    //     ->css(__DIR__.'/resources/less/admin.less'),
+    // new Extend\Locales(__DIR__ . '/resources/locale'),
+    (new Extend\Formatter)
+        ->configure(function(Configurator $config) {
+            $config->BBCodes->addCustom(
+                '[ref id={TEXT1}]{TEXT2}[/ref]',
+                '<a href="#{TEXT1}">[{TEXT2}]</a>'
+            );
+            $config->BBCodes->addCustom(
+                '[reference id={TEXT1}]{TEXT2}[/reference]',
+                '<span id="#{TEXT1}">{TEXT2}</span>'
+            );
+        }),
 ];
