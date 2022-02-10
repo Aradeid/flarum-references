@@ -30,7 +30,7 @@ return [
             );
             $config->BBCodes->addCustom(
                 '[reference id={TEXT1}]{TEXT2}[/reference]',
-                '<span id="#{TEXT1}">{TEXT2}</span>'
+                '<span id="{TEXT1}">{TEXT2}</span>'
             );
         }),
 ];
