@@ -7,12 +7,15 @@
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta.8"
+    "flarum/core": "^1.0"
   },
   "authors": [
     {
-      "name": "Aradeid, Block-cat",
-      "email": "mcurmei@mail.ru",
+      "name": "Aradeid",
+      "role": "Developer"
+    },
+    {
+      "name": "Block-cat",
       "role": "Developer"
     }
   ],
