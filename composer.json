@@ -26,15 +26,12 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "Flarum Refernces",
+      "title": "Flarum References",
       "icon": {
-        "name": "",
-        "backgroundColor": "",
-        "color": ""
+        "name": "fas fa-link",
+        "backgroundColor": "#fa0",
+        "color": "#fff"
       }
-    },
-    "flagrow": {
-      "discuss": ""
     }
   }
 }
