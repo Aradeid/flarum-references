@@ -20,9 +20,7 @@ export default class InsertReferenceDropdown extends Dropdown  {
     this.state = this.attrs.state;
 
     this.text = Stream('');
-
     this.href = Stream('');
-    this.title = Stream('');
 
     // this.state.addItem(
     //   this.attrs.type,
@@ -89,7 +87,7 @@ export default class InsertReferenceDropdown extends Dropdown  {
     items.add(
       'insert',
       <Button type="submit" className="Button Button--primary">
-        {app.translator.trans('askvortsov-rich-text.lib.composer.insert_button')}
+        {app.translator.trans('flarum-references.forum.composer.insert_button')}
       </Button>
     );
 
@@ -128,7 +126,7 @@ export default class InsertReferenceDropdown extends Dropdown  {
       items.add(
         'remove',
         <Button onclick={this.remove.bind(this)} className="Button Button--danger">
-          {app.translator.trans('askvortsov-rich-text.lib.composer.insert_link.remove_button')}
+          {app.translator.trans('flarum-references.forum.composer.insert_link.remove_button')}
         </Button>,
         -10
       );
@@ -138,15 +136,16 @@ export default class InsertReferenceDropdown extends Dropdown  {
   }
 
   insert(e) {
-    const linkAttrs = { href: this.href(), title: this.title() };
+    const linkAttrs = { href: this.href(), text: this.text() };
 
     if (this.selectionEmpty && !this.active) {
       //this.command = dispatch(state.tr.replaceSelectionWith(state.schema.text(this.text(), [this.attrs.mark.create(linkAttrs)]), false));
 
       styleSelectedText(app.composer.editor.el, 
         //{ prefix: '![', suffix: '](https://)', replaceNext: 'https://', scanFor: 'https?://' }
-        { prefix: '[ref][' + linkAttrs.title, suffix: ']('+ linkAttrs.href +')[/ref]' }
+        { prefix: '[ref][' + linkAttrs.text, suffix: ']('+ linkAttrs.href +')[/ref]' }
       );
+      //$('.TextEditor-editor')
       this.text('');
       this.href('');
     } else {
@@ -168,7 +167,7 @@ export default class InsertReferenceDropdown extends Dropdown  {
     const attrs = this.state.markAttrs(this.attrs.mark);
 
     this.href(attrs.href);
-    this.title(attrs.title);
+    this.text(attrs.text);
 
     this.selectionEmpty = this.state.selectionEmpty();
   }
