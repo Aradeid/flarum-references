@@ -14,21 +14,54 @@ export default class NewsRefModal extends Modal {
   }
 
   title() {
-    return "Referinta";
+    return "Stire";
   }
 
   content() {
     return [
       m('.Modal-body',
         m('Form.Form--left',
-          m('.Form-group',
-            m('label', app.translator.trans('Textul referintei')),
-            m('input.FormControl', {
-              type: "text",
-              bidi: this.reference,
-            },
-            )
-          ),
+        m('span.description', app.translator.trans('Crearea de link-uri către știri surse de informații.')),
+        m('.Form-group',
+          m('label', app.translator.trans('Titlul')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Author')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('URL Link')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Denumirea sursei')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Data publicării')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
           Button.component(
             {
               className: "Button Button--primary",

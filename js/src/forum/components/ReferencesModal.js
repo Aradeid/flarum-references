@@ -22,45 +22,50 @@ export default class ReferencesModal extends Modal {
   content() {
     return [
       m('.Modal-body',
-        m('.Form.Form--centered',
-          m('.Form-group',
-            m('.choiceBox', {
-              onclick: () => app.modal.show(DefaultRefModal),
-            },
-              m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.standard')),
-              m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.standard'))
-            )
-          ),
+        m('.Form.Form--centered div_referinta',
           m('.Form-group',
             m('.choiceBox', {
               onclick: () => app.modal.show(SiteRefModal),
             },
-              m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.discuss')),
-              m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.discuss'))
+              (<i class="icon fas fa-window-maximize Button-icon"></i>),
+              m('span', app.translator.trans('Site web')),
+              /* m('p', app.translator.trans('Site web')) */
             )
           ),
           m('.Form-group',
             m('.choiceBox', {
               onclick: () => app.modal.show(BookRefModal),
             },
-              m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.gallery')),
-              m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.gallery'))
+              (<i class="icon fas fa-book Button-icon"></i>),
+              m('span', app.translator.trans('Carte')),
+              /* m('p', app.translator.trans('Carte')) */
             )
           ),
           m('.Form-group',
             m('.choiceBox', {
               onclick: () => app.modal.show(NewsRefModal),
             },
-              m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.link')),
-              m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.link'))
+              (<i class="icon fas fa-newspaper Button-icon"></i>),
+              m('span', app.translator.trans('Stire')),
+              /* m('p', app.translator.trans('Stire')) */
             )
           ),
           m('.Form-group',
             m('.choiceBox', {
               onclick: () => app.modal.show(JournalRefModal),
             },
-              m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.link')),
-              m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.link'))
+              (<i class="icon fas fa-book-open Button-icon"></i>),
+              m('span', app.translator.trans('Jurnal')),
+              /* m('p', app.translator.trans('Jurnal')) */
+            )
+          ),
+          m('.Form-group',
+            m('.choiceBox', {
+              onclick: () => app.modal.show(DefaultRefModal),
+            },
+              (<i class="icon fas fa-bookmark Button-icon"></i>),
+              m('span', app.translator.trans('De baza')),
+              /* m('p', app.translator.trans('De baza')) */
             )
           ),
         )
