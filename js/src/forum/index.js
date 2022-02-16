@@ -35,7 +35,7 @@ app.initializers.add('aradeid/flarum-references', () => {
     //   50
     // );
 
-    console.log(this.attrs.composer.fields.content());
+    // console.log(this.attrs.composer.fields.content());
     // by BlockCat
     items.add(
       'references',
