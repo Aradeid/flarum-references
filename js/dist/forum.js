@@ -11720,6 +11720,469 @@ var InsertReferenceDropdown = /*#__PURE__*/function (_Dropdown) {
 
 /***/ }),
 
+/***/ "./src/forum/components/BookRefModal.js":
+/*!**********************************************!*\
+  !*** ./src/forum/components/BookRefModal.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BookRefModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/utils/Stream */ "flarum/common/utils/Stream");
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var BookRefModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(BookRefModal, _Modal);
+
+  function BookRefModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = BookRefModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.reference = flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default()('');
+  };
+
+  _proto.className = function className() {
+    return "";
+  };
+
+  _proto.title = function title() {
+    return "Referinta";
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m('.Modal-body', m('Form.Form--left', m('.Form-group', m('label', app.translator.trans('Textul referintei')), m('input.FormControl', {
+      type: "text",
+      bidi: this.reference
+    })), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        return _this.addReference();
+      }
+    }, "Adaugare")))];
+  };
+
+  _proto.addReference = function addReference() {
+    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]');
+    app.composer.editor.insertAtCursor('\n\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
+    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    app.modal.close();
+  };
+
+  return BookRefModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/DefaultRefModal.js":
+/*!*************************************************!*\
+  !*** ./src/forum/components/DefaultRefModal.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DefaultRefModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/utils/Stream */ "flarum/common/utils/Stream");
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var DefaultRefModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(DefaultRefModal, _Modal);
+
+  function DefaultRefModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = DefaultRefModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.reference = flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default()('');
+  };
+
+  _proto.className = function className() {
+    return "";
+  };
+
+  _proto.title = function title() {
+    return "Referinta";
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m('.Modal-body', m('Form.Form--left', m('.Form-group', m('label', app.translator.trans('Textul referintei')), m('input.FormControl', {
+      type: "text",
+      bidi: this.reference
+    })), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        return _this.addReference();
+      }
+    }, "Adaugare")))];
+  };
+
+  _proto.addReference = function addReference() {
+    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]\ntesdfd', false);
+    app.composer.editor.insertAtCursor("\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf");
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
+    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    app.modal.close();
+  };
+
+  return DefaultRefModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/JournalRefModal.js":
+/*!*************************************************!*\
+  !*** ./src/forum/components/JournalRefModal.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return JournalRefModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/utils/Stream */ "flarum/common/utils/Stream");
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var JournalRefModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(JournalRefModal, _Modal);
+
+  function JournalRefModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = JournalRefModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.reference = flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default()('');
+  };
+
+  _proto.className = function className() {
+    return "";
+  };
+
+  _proto.title = function title() {
+    return "Referinta";
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m('.Modal-body', m('Form.Form--left', m('.Form-group', m('label', app.translator.trans('Textul referintei')), m('input.FormControl', {
+      type: "text",
+      bidi: this.reference
+    })), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        return _this.addReference();
+      }
+    }, "Adaugare")))];
+  };
+
+  _proto.addReference = function addReference() {
+    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]');
+    app.composer.editor.insertAtCursor('\n\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
+    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    app.modal.close();
+  };
+
+  return JournalRefModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/NewsRefModal.js":
+/*!**********************************************!*\
+  !*** ./src/forum/components/NewsRefModal.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NewsRefModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/utils/Stream */ "flarum/common/utils/Stream");
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var NewsRefModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(NewsRefModal, _Modal);
+
+  function NewsRefModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = NewsRefModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.reference = flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default()('');
+  };
+
+  _proto.className = function className() {
+    return "";
+  };
+
+  _proto.title = function title() {
+    return "Referinta";
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m('.Modal-body', m('Form.Form--left', m('.Form-group', m('label', app.translator.trans('Textul referintei')), m('input.FormControl', {
+      type: "text",
+      bidi: this.reference
+    })), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        return _this.addReference();
+      }
+    }, "Adaugare")))];
+  };
+
+  _proto.addReference = function addReference() {
+    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]');
+    app.composer.editor.insertAtCursor('\n\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
+    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    app.modal.close();
+  };
+
+  return NewsRefModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/ReferencesModal.js":
+/*!*************************************************!*\
+  !*** ./src/forum/components/ReferencesModal.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ReferencesModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _DefaultRefModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DefaultRefModal */ "./src/forum/components/DefaultRefModal.js");
+/* harmony import */ var _SiteRefModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SiteRefModal */ "./src/forum/components/SiteRefModal.js");
+/* harmony import */ var _BookRefModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BookRefModal */ "./src/forum/components/BookRefModal.js");
+/* harmony import */ var _NewsRefModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewsRefModal */ "./src/forum/components/NewsRefModal.js");
+/* harmony import */ var _JournalRefModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./JournalRefModal */ "./src/forum/components/JournalRefModal.js");
+
+
+
+
+
+
+
+
+var ReferencesModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(ReferencesModal, _Modal);
+
+  function ReferencesModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = ReferencesModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+  };
+
+  _proto.className = function className() {
+    return "DiscussionType";
+  };
+
+  _proto.title = function title() {
+    return "Selectare tip referinta";
+  };
+
+  _proto.content = function content() {
+    return [m('.Modal-body', m('.Form.Form--centered', m('.Form-group', m('.choiceBox', {
+      onclick: function onclick() {
+        return app.modal.show(_DefaultRefModal__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      }
+    }, m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.standard')), m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.standard')))), m('.Form-group', m('.choiceBox', {
+      onclick: function onclick() {
+        return app.modal.show(_SiteRefModal__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      }
+    }, m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.discuss')), m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.discuss')))), m('.Form-group', m('.choiceBox', {
+      onclick: function onclick() {
+        return app.modal.show(_BookRefModal__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      }
+    }, m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.gallery')), m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.gallery')))), m('.Form-group', m('.choiceBox', {
+      onclick: function onclick() {
+        return app.modal.show(_NewsRefModal__WEBPACK_IMPORTED_MODULE_5__["default"]);
+      }
+    }, m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.link')), m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.link')))), m('.Form-group', m('.choiceBox', {
+      onclick: function onclick() {
+        return app.modal.show(_JournalRefModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
+      }
+    }, m('span', app.translator.trans('discussion-type.forum.discussion_type_modal.type.link')), m('p', app.translator.trans('discussion-type.forum.discussion_type_modal.type_info.link'))))))];
+  };
+
+  return ReferencesModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/SiteRefModal.js":
+/*!**********************************************!*\
+  !*** ./src/forum/components/SiteRefModal.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SiteRefModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/utils/Stream */ "flarum/common/utils/Stream");
+/* harmony import */ var flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var SiteRefModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(SiteRefModal, _Modal);
+
+  function SiteRefModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = SiteRefModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.reference = flarum_common_utils_Stream__WEBPACK_IMPORTED_MODULE_3___default()('');
+  };
+
+  _proto.className = function className() {
+    return "";
+  };
+
+  _proto.title = function title() {
+    return "Referinta";
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m('.Modal-body', m('Form.Form--left', m('.Form-group', m('label', app.translator.trans('Textul referintei')), m('input.FormControl', {
+      type: "text",
+      bidi: this.reference
+    })), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        return _this.addReference();
+      }
+    }, "Adaugare")))];
+  };
+
+  _proto.addReference = function addReference() {
+    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]');
+    app.composer.editor.insertAtCursor('\n\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
+    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
+    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    app.modal.close();
+  };
+
+  return SiteRefModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
 /***/ "./src/forum/index.js":
 /*!****************************!*\
   !*** ./src/forum/index.js ***!
@@ -11740,6 +12203,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_common_components_TextEditor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_TextEditor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/forum/components/CommentPost */ "flarum/forum/components/CommentPost");
 /* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/components/ComposerBody */ "flarum/components/ComposerBody");
+/* harmony import */ var flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! flarum/common/components/Tooltip */ "flarum/common/components/Tooltip");
+/* harmony import */ var flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_ReferencesModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/ReferencesModal */ "./src/forum/components/ReferencesModal.js");
 function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -11752,8 +12222,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
+
+
+
 flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('aradeid/flarum-references', function () {
+  // adaugarea butonului pentru referinte in Editor la optiuni
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_common_components_TextEditor__WEBPACK_IMPORTED_MODULE_4___default.a.prototype, 'toolbarItems', function (items) {
+    // by Aradeid
     //() => this.attrs.composer.editor.insertAtCursor(' :')
 
     /*items.add(
@@ -11764,14 +12240,43 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('aradeid/flar
         </TextEditorButton>
       )
     );*/
-    items.add('link', _InsertReferenceDropdown__WEBPACK_IMPORTED_MODULE_2__["default"].component({
-      type: 'link',
+    // items.add(
+    //   'link',
+    //   InsertReferenceDropdown.component({
+    //     type: 'link',
+    //     icon: 'fas fa-link',
+    //     tooltip: app.translator.trans('flarum-references.forum.composer.addReferenceButton'),
+    //     state: this.attrs.state,
+    //   }),
+    //   50
+    // );
+    console.log(this.attrs.composer.fields.content()); // by BlockCat
+
+    items.add('references', flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_8___default.a.component({
+      text: "Referinta"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_7___default.a.component({
+      className: 'Button Button--icon Button--link',
       icon: 'fas fa-link',
-      tooltip: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('flarum-references.forum.composer.addReferenceButton'),
-      state: this.attrs.state
-    }), 50);
+      onclick: function onclick() {
+        return flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.modal.show(_components_ReferencesModal__WEBPACK_IMPORTED_MODULE_9__["default"]);
+      }
+    })));
     return items;
-  }); // Implementarea accesarii link-urilor interne in articole si comentarii
+  }); // adaugarea butonului pentru referinte in Editor in partea dreapta (portlet-ui)
+  // extend(ComposerBody.prototype, 'rightContent', function (items) {
+  //   items.add(
+  //     'references',
+  //     Button.component(
+  //       {
+  //         className: 'Button',
+  //         onclick: () => app.modal.show(ReferencesModal),
+  //       },
+  //       "Referinta"
+  //     ),
+  //   );
+  // });
+  // Implementarea accesarii link-urilor interne in articole si comentarii
+  // by BlockCat
 
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, ['oncreate', 'onupdate'], function () {
     var baseUrl = flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('baseUrl');
@@ -11816,15 +12321,13 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('aradeid/flar
       if (_ret === "continue") continue;
     }
   });
-});
-
-function addReference() {
-  styleSelectedText(flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.composer.editor.el, //{ prefix: '![', suffix: '](https://)', replaceNext: 'https://', scanFor: 'https?://' }
-  {
-    prefix: '[ref][',
-    suffix: '](https://insertLinkHere)[/ref]'
-  });
-}
+}); // by Aradeid
+// function addReference() {
+//   styleSelectedText(app.composer.editor.el, 
+//     //{ prefix: '![', suffix: '](https://)', replaceNext: 'https://', scanFor: 'https?://' }
+//     { prefix: '[ref][', suffix: '](https://insertLinkHere)[/ref]' }
+//   );
+// }
 
 /***/ }),
 
@@ -11946,6 +12449,39 @@ module.exports = flarum.core.compat['common/utils/extractText'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['common/utils/styleSelectedText'];
+
+/***/ }),
+
+/***/ "flarum/components/Button":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Button']" ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/Button'];
+
+/***/ }),
+
+/***/ "flarum/components/ComposerBody":
+/*!****************************************************************!*\
+  !*** external "flarum.core.compat['components/ComposerBody']" ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/ComposerBody'];
+
+/***/ }),
+
+/***/ "flarum/components/Modal":
+/*!*********************************************************!*\
+  !*** external "flarum.core.compat['components/Modal']" ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/Modal'];
 
 /***/ }),
 
