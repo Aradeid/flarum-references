@@ -12250,8 +12250,8 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('aradeid/flar
     //   }),
     //   50
     // );
-    console.log(this.attrs.composer.fields.content()); // by BlockCat
-
+    // console.log(this.attrs.composer.fields.content());
+    // by BlockCat
     items.add('references', flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_8___default.a.component({
       text: "Referinta"
     }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_7___default.a.component({
