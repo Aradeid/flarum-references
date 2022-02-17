@@ -14,15 +14,48 @@ export default class SiteRefModal extends Modal {
   }
 
   title() {
-    return "Referinta";
+    return "Site web";
   }
 
   content() {
     return [
       m('.Modal-body',
         m('Form.Form--left',
+         m('span.description', app.translator.trans('Înregistrarea referințelor bibliografice la publicațiile postate pe Internet.')),
           m('.Form-group',
             m('label', app.translator.trans('Textul referintei')),
+            m('input.FormControl', {
+              type: "text",
+              bidi: this.reference,
+            },
+            )
+          ),
+          m('.Form-group',
+            m('label', app.translator.trans('Link')),
+            m('input.FormControl', {
+              type: "text",
+              bidi: this.reference,
+            },
+            )
+          ),
+          m('.Form-group',
+            m('label', app.translator.trans('Author')),
+            m('input.FormControl', {
+              type: "text",
+              bidi: this.reference,
+            },
+            )
+          ),
+          m('.Form-group',
+            m('label', app.translator.trans('Data')),
+            m('input.FormControl', {
+              type: "text",
+              bidi: this.reference,
+            },
+            )
+          ),
+          m('.Form-group',
+            m('label', app.translator.trans('Denumirea Web-site')),
             m('input.FormControl', {
               type: "text",
               bidi: this.reference,

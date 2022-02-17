@@ -1,0 +1,39 @@
+.div_referinta {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  justify-content: center;
+
+  .Form-group {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+    padding: 10px;
+
+    .choiceBox {
+      padding: 16px;
+      border-radius: 8px;
+      background: #fafafa;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+      transition: .2s;
+
+      .icon {
+        margin-right: 0px !important;
+        margin-bottom: 0.6rem;
+        font-size: 1.6rem;
+      }
+    }
+    .choiceBox:hover {
+        cursor: pointer;
+        background: #beccd8;
+    }
+  }
+}
+.description {
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    display: block;
+}

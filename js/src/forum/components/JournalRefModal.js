@@ -14,21 +14,78 @@ export default class JournalRefModal extends Modal {
   }
 
   title() {
-    return "Referinta";
+    return "Journal";
   }
 
   content() {
     return [
       m('.Modal-body',
         m('Form.Form--left',
-          m('.Form-group',
-            m('label', app.translator.trans('Textul referintei')),
-            m('input.FormControl', {
-              type: "text",
-              bidi: this.reference,
-            },
-            )
-          ),
+        m('span.description', app.translator.trans('Model pentru plasarea referințelor bibliografice la articole din reviste și periodice.')),
+        m('.Form-group',
+          m('label', app.translator.trans('Link')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Author')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Titlul')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Anul')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Editura')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Limba')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Luna')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
+        m('.Form-group',
+          m('label', app.translator.trans('Ziua')),
+          m('input.FormControl', {
+            type: "text",
+            bidi: this.reference,
+          },
+          )
+        ),
           Button.component(
             {
               className: "Button Button--primary",

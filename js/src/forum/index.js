@@ -52,7 +52,6 @@ app.initializers.add('aradeid/flarum-references', () => {
         ),
       ),
     );
-
     return items;
   });
 
