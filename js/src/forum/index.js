@@ -1,4 +1,5 @@
 import {extend} from 'flarum/common/extend';
+import { baseKeymap } from 'tiptap-commands';
 import app from 'flarum/app';
 import InsertReferenceDropdown from './InsertReferenceDropdown';
 import TextEditorButton from 'flarum/components/TextEditorButton';
@@ -11,8 +12,27 @@ import Tooltip from 'flarum/common/components/Tooltip';
 import ReferencesModal from './components/ReferencesModal';
 
 app.initializers.add('aradeid/flarum-references', () => {
+  // adaugarea metodei pentru simularea tastei enter in rich-text
+  if (flarum.extensions['askvortsov-rich-text']) {
+    const {
+      ProseMirrorEditorDriver
+    } = flarum.extensions['askvortsov-rich-text'].proseMirror;
+
+    ProseMirrorEditorDriver.prototype.setEnter = function() {
+      // console.log(this.view.state);
+      baseKeymap['Enter'](this.view.state, this.view.dispatch);
+      // baseKeymap['Enter'];
+    }
+    ProseMirrorEditorDriver.prototype.delete = function() {
+      // console.log("sters");
+      baseKeymap['Backspace'](this.view.state, this.view.dispatch);
+    }
+  }
+  // console.log(app.composer.editor);
+
   // adaugarea butonului pentru referinte in Editor la optiuni
   extend(TextEditor.prototype, 'toolbarItems', function (items) {
+    // console.log(app.composer.editor);
     // by Aradeid
     //() => this.attrs.composer.editor.insertAtCursor(' :')
     /*items.add(
