@@ -29,8 +29,8 @@ return [
                 '<a href="#{TEXT1}">[{TEXT2}]</a>'
             );
             $config->BBCodes->addCustom(
-                '[reference id={TEXT1}]{TEXT2}[/reference]',
-                '<span id="{TEXT1}">{TEXT2}</span>'
+                '[reference id={TEXT1} type={TEXT3?}]{TEXT2}[/reference]',
+                '<span id="{TEXT1}" type="{@type}">{TEXT2}</span>'
             );
         }),
 ];

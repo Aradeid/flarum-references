@@ -8,6 +8,8 @@ import CommentPost from 'flarum/forum/components/CommentPost';
 import ComposerBody from 'flarum/components/ComposerBody';
 import Button from 'flarum/components/Button';
 import Tooltip from 'flarum/common/components/Tooltip';
+import ItemList from 'flarum/common/utils/ItemList';
+import listItems from 'flarum/common/helpers/listItems';
 
 import ReferencesModal from './components/ReferencesModal';
 
@@ -76,18 +78,26 @@ app.initializers.add('aradeid/flarum-references', () => {
   });
 
   // adaugarea butonului pentru referinte in Editor in partea dreapta (portlet-ui)
-  // extend(ComposerBody.prototype, 'rightContent', function (items) {
-  //   items.add(
-  //     'references',
-  //     Button.component(
-  //       {
-  //         className: 'Button',
-  //         onclick: () => app.modal.show(ReferencesModal),
-  //       },
-  //       "Referinta"
-  //     ),
-  //   );
-  // });
+  ComposerBody.prototype.sidebarMenu = function () {
+    const items = new ItemList();
+
+    items.add(
+      'reference_button',
+      Button.component(
+          {
+              // icon: 'fas fa-pencil-alt',
+              className: 'Button Button--secondary',
+              onclick: () => app.modal.show(ReferencesModal),
+          },
+          "Referinte"),
+    );
+
+    return items;
+  }
+
+  extend(ComposerBody.prototype, 'view', function (view) {
+    view.children[0].children[1].children.push(<ul className="sidebarMenu">{listItems(this.sidebarMenu().toArray())}</ul>);
+  });
 
   // Implementarea accesarii link-urilor interne in articole si comentarii
   // by BlockCat
@@ -126,7 +136,7 @@ app.initializers.add('aradeid/flarum-references', () => {
       });
     }
   });
-});
+}, -21);
 
 // by Aradeid
 // function addReference() {

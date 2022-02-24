@@ -7,7 +7,8 @@ export default class DefaultRefModal extends Modal {
     super.oninit(vnode);
 
     this.value = app.composer.fields.content() || '';
-    this.allReferences = this.value.match(/\[reference\ id=[\w]*\][\w\ \(\)\[\]\.\,\/\\\-_\+;:"'?&]*\[\/reference\]/gm);
+    // this.allReferences = this.value.match(/\[reference\ id=[\w]*\][\w\ \(\)\[\]\.\,\/\\\-_\+;:"'?&]*\[\/reference\]/gm);
+    this.allReferences = this.value.match(/\[reference\ id=[\w]* type=[\w]*\].*\[\/reference\]/gm);
     this.referenceId = this.allReferences?.length || 0;
 
     // console.log(this.value);
@@ -28,6 +29,7 @@ export default class DefaultRefModal extends Modal {
   }
 
   content() {
+    // console.log(this.$('input[required]')[0]?.validity.valid);
     // console.log(app.composer.editor.attrs.menuState.editorView.dom.outerText);
     // console.log(app.composer.editor.attrs.menuState.editorView.dom.outerText.length);
     return [
@@ -37,8 +39,16 @@ export default class DefaultRefModal extends Modal {
           m('label', app.translator.trans('Titlul')),
           m('input.FormControl', {
             type: "text",
-            bidi: this.fields.title,
+            value: this.fields.title(),
+            placeholder: "ex. Pădurea spânzuraților",
             required: true,
+            oninput: (e) => {
+              this.fields.title(e.target.value);
+              this.removeRedStyle();
+              // if (e.target.hasAttribute("style")) {
+              //   e.target.removeAttribute("style");
+              // }
+            }
           },
           )
         ),
@@ -46,7 +56,12 @@ export default class DefaultRefModal extends Modal {
           m('label', app.translator.trans('Link')),
           m('input.FormControl', {
             type: "url",
-            bidi: this.fields.link,
+            placeholder: "ex. http://example.com",
+            value: this.fields.link(),
+            oninput: (e) => {
+              this.fields.link(e.target.value);
+              this.removeRedStyle();
+            }
           },
           )
         ),
@@ -62,7 +77,37 @@ export default class DefaultRefModal extends Modal {
     ];
   }
 
+  removeRedStyle() {
+    const requiredFields = this.$('input');
+
+    for (let k = 0; k < requiredFields.length; k++) {
+      if (requiredFields[k].validity.valid) {
+        requiredFields[k].removeAttribute("style");
+      }
+    }
+  }
+
+  areSetRequiredFields() {
+    const requiredFields = this.$('input');
+    let i = 0;
+    // console.log(requiredFields);
+    
+    for (let k = 0; k < requiredFields.length; k++) {
+      if (!requiredFields[k].validity.valid) {
+        requiredFields[k].style.setProperty('border-color', 'red', 'important');
+        i++;
+      }
+    }
+
+    if (i == 0) return true;
+
+    return false;
+  }
+
   addReference() {
+    if (!this.areSetRequiredFields()) return;
+
+    let date = new Date();
     // console.log(flarum.extensions['askvortsov-rich-text']);
     if (flarum.extensions['askvortsov-rich-text']) { // implements for askvortsov-rich-text editor
       app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
@@ -81,11 +126,16 @@ export default class DefaultRefModal extends Modal {
 
       app.composer.editor.insertAtCursor(
         this.referenceId +
-        ". [reference id=ref" + this.referenceId + "] " +
+        ". [reference id=ref" + this.referenceId + " type=default] " +
         this.fields.title() +
         ". " +
+        "[citat la " +
+        date.getDate() + 
+        "." + (date.getMonth() + 1) +
+        "." + date.getFullYear() +
+        "] " +
         this.fields.link() +
-        " [/reference]"
+        ((this.fields.link().length === 0) ? "[/reference]" : " [/reference]")
       );
 
       app.composer.editor.setSelectionRange(position[0], position[1]);
@@ -115,11 +165,16 @@ export default class DefaultRefModal extends Modal {
       app.composer.editor.insertAtCursor(
         "\n" +
         this.referenceId +
-        "\\. [reference id=ref" + this.referenceId + "] " +
+        "\\. [reference id=ref" + this.referenceId + " type=default] " +
         this.fields.title() +
         ". " +
+        "[citat la " +
+        date.getDate() + 
+        "." + (date.getMonth() + 1) +
+        "." + date.getFullYear() +
+        "] " +
         this.fields.link() +
-        " [/reference]"
+        ((this.fields.link().length === 0) ? "[/reference]" : " [/reference]")
       );
 
       app.composer.editor.setSelectionRange(position[0], position[1]);
@@ -128,6 +183,7 @@ export default class DefaultRefModal extends Modal {
       // app.composer.editor.moveCursorTo(app.composer.fields.content().length + 1);
     }
 
+    // console.log(this.fields.link().length);
     app.modal.close();
   }
 }

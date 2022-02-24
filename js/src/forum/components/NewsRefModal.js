@@ -6,7 +6,18 @@ export default class NewsRefModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
 
-    this.reference = Stream('');
+    this.value = app.composer.fields.content() || '';
+    // this.allReferences = this.value.match(/\[reference\ id=[\w]*\][\w\ \(\)\[\]\.\,\/\\\-_\+;:"'?&]*\[\/reference\]/gm);
+    this.allReferences = this.value.match(/\[reference\ id=[\w]* type=[\w]*\].*\[\/reference\]/gm);
+    this.referenceId = this.allReferences?.length || 0;
+
+    this.fields = {
+      title: Stream(''),
+      link: Stream(''),
+      author: Stream(''),
+      createAt: Stream(''),
+      siteName: Stream(''),
+    };
   }
 
   className() {
@@ -26,7 +37,13 @@ export default class NewsRefModal extends Modal {
           m('label', app.translator.trans('Titlul')),
           m('input.FormControl', {
             type: "text",
-            bidi: this.reference,
+            value: this.fields.title(),
+            placeholder: "ex. Pădurea spânzuraților",
+            required: true,
+            oninput: (e) => {
+              this.fields.title(e.target.value);
+              this.removeRedStyle();
+            },
           },
           )
         ),
@@ -34,15 +51,23 @@ export default class NewsRefModal extends Modal {
           m('label', app.translator.trans('Author')),
           m('input.FormControl', {
             type: "text",
-            bidi: this.reference,
+            placeholder: "ex. L. Rebreanu",
+            bidi: this.fields.author,
           },
           )
         ),
         m('.Form-group',
           m('label', app.translator.trans('URL Link')),
           m('input.FormControl', {
-            type: "text",
-            bidi: this.reference,
+            type: "url",
+            value: this.fields.link(),
+            placeholder: "ex. http://example.com",
+            required: true,
+            oninput: (e) => {
+              this.fields.link(e.target.value);
+              this.fields.siteName(e.target.value?.split('//')[1]?.split('/')[0] || "");
+              this.removeRedStyle();
+            },
           },
           )
         ),
@@ -50,7 +75,13 @@ export default class NewsRefModal extends Modal {
           m('label', app.translator.trans('Denumirea sursei')),
           m('input.FormControl', {
             type: "text",
-            bidi: this.reference,
+            value: this.fields.siteName(),
+            placeholder: "ex. example.com",
+            required: true,
+            oninput: (e) => {
+              this.fields.siteName(e.target.value);
+              this.removeRedStyle();
+            },
           },
           )
         ),
@@ -58,7 +89,13 @@ export default class NewsRefModal extends Modal {
           m('label', app.translator.trans('Data publicării')),
           m('input.FormControl', {
             type: "text",
-            bidi: this.reference,
+            placeholder: "ex. 01.01.1970",
+            pattern: "^(?:(?:31(\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$",
+            value: this.fields.createAt(),
+            oninput: (e) => {
+              this.fields.createAt(e.target.value);
+              this.removeRedStyle();
+            }
           },
           )
         ),
@@ -74,14 +111,123 @@ export default class NewsRefModal extends Modal {
     ];
   }
 
+  removeRedStyle() {
+    const requiredFields = this.$('input');
+
+    for (let k = 0; k < requiredFields.length; k++) {
+      if (requiredFields[k].validity.valid) {
+        requiredFields[k].removeAttribute("style");
+      }
+    }
+  }
+
+  areSetRequiredFields() {
+    const requiredFields = this.$('input');
+    let i = 0;
+    
+    for (let k = 0; k < requiredFields.length; k++) {
+      if (!requiredFields[k].validity.valid) {
+        requiredFields[k].style.setProperty('border-color', 'red', 'important');
+        i++;
+      }
+    }
+
+    if (i == 0) return true;
+
+    return false;
+  }
+
   addReference() {
-    app.composer.editor.insertAtCursor('[ref id=ref1]' + 1 + '[/ref]');
-    app.composer.editor.insertAtCursor('\n\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
-    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
-    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
-    app.composer.editor.insertAtCursor('\nadadedf fsdhfshdfkhsdkh kasdhfksdhfkasdhkf\n');
-    app.composer.editor.insertAtCursor('\nReferinte:\n\n');
-    app.composer.editor.insertAtCursor('  1. [reference id=ref1]' + this.reference() + '[/reference]');
+    if (!this.areSetRequiredFields()) return;
+    
+    let date = new Date();
+    // console.log(flarum.extensions['askvortsov-rich-text']);
+    if (flarum.extensions['askvortsov-rich-text']) { // implements for askvortsov-rich-text editor
+      app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
+
+      const position = app.composer.editor.getSelectionRange();
+      
+      if (this.referenceId == 1) {
+        app.composer.editor.moveCursorTo(app.composer.editor.attrs.menuState.editorView.dom.outerText.length + 1);
+        app.composer.editor.setEnter();
+        app.composer.editor.insertAtCursor("Referinte:");
+        app.composer.editor.setEnter();
+      } else {
+        app.composer.editor.moveCursorTo(app.composer.editor.attrs.menuState.editorView.dom.outerText.length + 1);
+        app.composer.editor.setEnter();
+      }
+
+      app.composer.editor.insertAtCursor(
+        this.referenceId +
+        ". [reference id=ref" + this.referenceId + " type=news] " +
+        this.fields.author() +
+        ((this.fields.author().length === 0) ? "" : ". ") +
+        this.fields.title() +
+        ". " +
+        this.fields.siteName() +
+        ((this.fields.createAt().length === 0) ? ". " : ", ") +
+        this.fields.createAt() +
+        ((this.fields.createAt().length === 0) ? "" : ". ") +
+        "[citat la " +
+        date.getDate() + 
+        "." + (date.getMonth() + 1) +
+        "." + date.getFullYear() +
+        "] " +
+        this.fields.link() +
+        " [/reference]"
+      );
+
+      app.composer.editor.setSelectionRange(position[0], position[1]);
+      app.composer.editor.setEnter();
+      app.composer.editor.delete();
+
+      // this.array[0] = "Alt ceva"
+      // console.log("rich-text");
+    } else { // implements for flarum-markdown editor
+      console.log(app.composer.editor.el.value);
+      console.log(app.composer.fields.content());
+      app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
+
+      const position = app.composer.editor.getSelectionRange();
+
+      if (this.referenceId == 1) {
+        app.composer.editor.moveCursorTo(app.composer.editor.el.value.length + 1);
+        // app.composer.editor.setEnter();
+        app.composer.editor.insertAtCursor("\n\nReferinte:\n");
+        // app.composer.editor.setEnter();
+      } else {
+        app.composer.editor.moveCursorTo(app.composer.editor.el.value.length + 1);
+        app.composer.editor.insertAtCursor("\n");
+        // app.composer.editor.setEnter();
+      }
+
+      app.composer.editor.insertAtCursor(
+        "\n" +
+        this.referenceId +
+        "\\. [reference id=ref" + this.referenceId + " type=news] " +
+        this.fields.author() +
+        ((this.fields.author().length === 0) ? "" : ". ") +
+        this.fields.title() +
+        ". " +
+        this.fields.siteName() +
+        ((this.fields.createAt().length === 0) ? ". " : ", ") +
+        this.fields.createAt() +
+        ((this.fields.createAt().length === 0) ? "" : ". ") +
+        "[citat la " +
+        date.getDate() + 
+        "." + (date.getMonth() + 1) +
+        "." + date.getFullYear() +
+        "] " +
+        this.fields.link() +
+        " [/reference]"
+      );
+
+      app.composer.editor.setSelectionRange(position[0], position[1]);
+
+      // console.log("non rich-text");
+      // app.composer.editor.moveCursorTo(app.composer.fields.content().length + 1);
+    }
+
     app.modal.close();
   }
 }
