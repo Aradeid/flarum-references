@@ -13,7 +13,28 @@ import listItems from 'flarum/common/helpers/listItems';
 
 import ReferencesModal from './components/ReferencesModal';
 
+// import {components} from '@block-cat-components';
+// const components = require('@block-cat-components');
+
+// function getStatus(url) {
+//   var request = new XMLHttpRequest();
+//   request.open("GET", url, true);
+//   request.setRequestHeader('Access-Control-Allow-Origin', '*');
+//   request.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+//   request.onreadystatechange = function() {
+//         if (request.readyState === 4){
+//             console.log(request.status);//this contains the status code
+//         }
+//     };
+//   request.send();
+//   // return request.status;
+// }
+
 app.initializers.add('aradeid/flarum-references', () => {
+  // console.log(app);
+  // console.log(flarum);
+  // console.log(flarum.extensions['block-cat-components']);
+  // console.log(components);
   // adaugarea metodei pentru simularea tastei enter in rich-text
   if (flarum.extensions['askvortsov-rich-text']) {
     const {
@@ -92,7 +113,36 @@ app.initializers.add('aradeid/flarum-references', () => {
           "Referinte"),
     );
 
+    items.add(
+      'reference_ctrl_button',
+      Button.component(
+        {
+          className: 'Button Button--secondary',
+          onclick: () => this.linkControl(),
+        },
+        "Control"
+      ),
+    );
+
     return items;
+  }
+
+  ComposerBody.prototype.linkControl = async function () {
+    // let response = await fetch('https://cors-anywhere.herokuapp.com/https://code.visualstudio.com/docs/java/java-tutorial', {
+    let response = await fetch('https://tools.emoldova.org/tools/validate-source', {
+      method: 'POST',
+      body: JSON.stringify({
+        url: 'https://code.visualstudio.com/docs/java/java-tutorial'
+      }),
+      // headers: {
+      //   // 'Access-Control-Allow-Origin' : '*',
+      //   // 'Access-Control-Request-Method' : 'GET',
+      //   'origin': '*'
+      // },
+    });
+
+    // console.log(getStatus('https://cors-anywhere.herokuapp.com/https://code.visualstudio.com/docs/java/java-tutorial'));
+    console.log(response.json());
   }
 
   extend(ComposerBody.prototype, 'view', function (view) {
