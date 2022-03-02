@@ -13,10 +13,10 @@ namespace Aradeid\FlarumReferences;
 
 use Flarum\Extend;
 use s9e\TextFormatter\Configurator;
-use BkC\Components\Extend\AddComponents;
+// use BkC\Components\Extend\AddComponents;
 
 return [
-    new AddComponents(),
+    // new AddComponents(),
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),
