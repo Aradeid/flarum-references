@@ -94,9 +94,9 @@ app.initializers.add('aradeid/flarum-references', () => {
     }
 
     const allReferences = value.match(/\[reference\ id=[\w]* type=[\w]*\].*\[\/reference\]/gm);
-
+    
     for (let i = 0; i < allReferences.length; i++) {
-      let tmp = allReferences[i].match(/(https?:\/\/)(\w+\.){1,}\w+[(\/(\w\-\_\+\?)+)]*/);
+      let tmp = allReferences[i].match(/(https?:\/\/)(\w+\.){1,}\w+[(\/(\w\-\_\+\.\?)+)]*/);
 
       if (tmp !== null) {
         allReferences[i] = tmp[0];
@@ -130,22 +130,21 @@ app.initializers.add('aradeid/flarum-references', () => {
       );
       this.loadingButton = false;
     } else {
-      // const unaccesibleIndexes = allReferences
-      //   .map((ref, index) => {
-      //     if (ref == false) return index;
-      //   })
-      //   .filter(index => index >= 0)
-      //   .map(index => index + 1);
+      const unaccesibleIndexes = allReferences
+        .map((ref, index) => {
+          if (ref == false) return index;
+        })
+        .filter(index => index >= 0)
+        .map(index => index + 1);
       app.alerts.show(
         Alert,
         {
           type: 'warning',
         },
-        // app.translator.trans("Link-urile din referintele " + unaccesibleIndexes.join(", ") + " nu sunt accesibile!")
-        app.translator.trans("Unele link-uri din referinte nu sunt accesibile!")
+        app.translator.trans("Link-urile din referintele " + unaccesibleIndexes.join(", ") + " nu sunt accesibile!")
+        // app.translator.trans("Unele link-uri din referinte nu sunt accesibile!")
       );
       this.loadingButton = false;
-      // console.log(unaccesibleIndexes);
     }
   }
 
