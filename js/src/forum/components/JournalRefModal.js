@@ -22,20 +22,19 @@ export default class JournalRefModal extends Modal {
   }
 
   title() {
-    return "Jurnal";
+    return app.translator.trans('flarum-references.forum.modal.ref_journal_modal');
   }
 
   content() {
     return [
       m('.Modal-body',
         m('Form.Form--left',
-        // m('span.description', app.translator.trans('Model pentru plasarea referințelor bibliografice la articole din reviste și periodice.')),
         m('.Form-group',
-          m('label', app.translator.trans('Titlul')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_title_label')),
           m('input.FormControl', {
             type: "text",
             value: this.fields.title(),
-            placeholder: "ex. Pădurea spânzuraților",
+            placeholder: "ex. Cultura în Evul Mediu",
             required: true,
             oninput: (e) => {
               this.fields.title(e.target.value);
@@ -45,10 +44,10 @@ export default class JournalRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Author')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_author_label')),
           m('input.FormControl', {
             type: "text",
-            placeholder: "ex. L. Rebreanu",
+            placeholder: "ex. Shakespeare",
             bidi: this.fields.author,
           },
           )
@@ -95,7 +94,7 @@ export default class JournalRefModal extends Modal {
     if (!this.areSetRequiredFields()) return;
 
     let date = new Date();
-    // console.log(flarum.extensions['askvortsov-rich-text']);
+    
     if (flarum.extensions['askvortsov-rich-text']) { // implements for askvortsov-rich-text editor
       app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
 
@@ -130,8 +129,6 @@ export default class JournalRefModal extends Modal {
       app.composer.editor.setEnter();
       app.composer.editor.delete();
 
-      // this.array[0] = "Alt ceva"
-      // console.log("rich-text");
     } else { // implements for flarum-markdown editor
       console.log(app.composer.editor.el.value);
       console.log(app.composer.fields.content());
@@ -167,9 +164,6 @@ export default class JournalRefModal extends Modal {
       );
 
       app.composer.editor.setSelectionRange(position[0], position[1]);
-
-      // console.log("non rich-text");
-      // app.composer.editor.moveCursorTo(app.composer.fields.content().length + 1);
     }
 
     app.modal.close();

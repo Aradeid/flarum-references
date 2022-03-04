@@ -1,14 +1,26 @@
 flarum-references:
   forum:
-    type:
-      web: "Site web"
-      carte: "Carte"
-      stire: "Stire"
-      jurnal: "Jurnal"
-      baza: "De baza"
-    type_info:
-      web: "Site web"
-      carte: "Carte"
-      stire: "Stire"
-      jurnal: "Jurnal"
-      baza: "De baza"
+    composer:
+      ref_button: "Referințe"
+      ref_ctrl_button: "Verificare link-uri"
+      alert:
+        success_alert: "Toate link-urile din referințe sunt accesibile!"
+        warning_alert_one: "Link-ul din referința {indexes} nu este accesibil!"
+        warning_alert_more: "Link-urile din referințele {indexes} nu sunt accesibile!"
+    modal:
+      ref_type_modal: "Selectare tip referință"
+      ref_site_modal: "Site web"
+      ref_site_description: "Înregistrarea referințelor bibliografice la publicațiile postate pe Internet"
+      ref_book_modal: "Carte"
+      ref_book_description: "Realizarea de referințe bibliografice la publicații de carte"
+      ref_news_modal: "Știre"
+      ref_news_description: "Crearea de referințe către știri ca surse de informații"
+      ref_journal_modal: "Jurnal"
+      ref_default_modal: "De bază"
+      ref_title_label: "Titlu"
+      ref_link_label: "Link"
+      ref_author_label: "Autor"
+      ref_year_label: "Anul"
+      ref_edit_label: "Editura"
+      ref_sourcename_label: "Denumirea sursei"
+      ref_createat_label: "Data publicării"

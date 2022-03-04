@@ -1,14 +1,26 @@
 flarum-references:
   forum:
-    type:
-      web: "Site web"
-      carte: "Carte"
-      stire: "Stire"
-      jurnal: "Jurnal"
-      baza: "De baza"
-    type_info:
-      web: "Site web"
-      carte: "Carte"
-      stire: "Stire"
-      jurnal: "Jurnal"
-      baza: "De baza"
+    composer:
+      ref_button: "References"
+      ref_ctrl_button: "Control links"
+      alert:
+        success_alert: "All links from references are accesible!"
+        warning_alert_one: "Link from references {indexes} isn't accesible!"
+        warning_alert_more: "Links from references {indexes} aren't accesible!"
+    modal:
+      ref_type_modal: "Select reference type"
+      ref_site_modal: "Web site"
+      ref_site_description: "Register the references to post publication on Internet"
+      ref_book_modal: "Book"
+      ref_book_description: "Register the references to book publication"
+      ref_news_modal: "News"
+      ref_news_description: "Register the references to news publication on Internet"
+      ref_journal_modal: "Journal"
+      ref_default_modal: "Default"
+      ref_title_label: "Title"
+      ref_link_label: "Link"
+      ref_author_label: "Author"
+      ref_year_label: "Year"
+      ref_edit_label: "Published by"
+      ref_sourcename_label: "Source name"
+      ref_createat_label: "Publication date"

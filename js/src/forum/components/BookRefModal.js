@@ -25,16 +25,16 @@ export default class BookRefModal extends Modal {
   }
 
   title() {
-    return "Carte";
+    return app.translator.trans('flarum-references.forum.modal.ref_book_modal');
   }
 
   content() {
     return [
       m('.Modal-body',
         m('Form.Form--left',
-        m('span.description', app.translator.trans('Realizarea de referințe bibliografice la publicații de carte.')),
+        m('span.description', app.translator.trans('flarum-references.forum.modal.ref_book_description')),
         m('.Form-group',
-          m('label', app.translator.trans('Link')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_link_label')),
           m('input.FormControl', {
             type: "url",
             value: this.fields.link(),
@@ -47,10 +47,10 @@ export default class BookRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Author')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_author_label')),
           m('input.FormControl', {
             type: "text",
-            placeholder: "ex. L. Rebreanu",
+            placeholder: "ex. Shakespeare",
             value: this.fields.author(),
             required: true,
             oninput: (e) => {
@@ -61,11 +61,11 @@ export default class BookRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Titlul')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_title_label')),
           m('input.FormControl', {
             type: "text",
             value: this.fields.title(),
-            placeholder: "ex. Pădurea spânzuraților",
+            placeholder: "ex. Cultura în Evul Mediu",
             required: true,
             oninput: (e) => {
               this.fields.title(e.target.value);
@@ -75,10 +75,10 @@ export default class BookRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Anul')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_year_label')),
           m('input.FormControl', {
             type: "text",
-            placeholder: "ex. 1970",
+            placeholder: "ex. 2015",
             pattern: "^(?:(?:1[6-9]|[2-9]\\d)\\d{2})$",
             value: this.fields.year(),
             oninput: (e) => {
@@ -89,7 +89,7 @@ export default class BookRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Editura')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_edit_label')),
           m('input.FormControl', {
             type: "text",
             value: this.fields.editura(),
@@ -143,7 +143,7 @@ export default class BookRefModal extends Modal {
     if (!this.areSetRequiredFields()) return;
 
     let date = new Date();
-    // console.log(flarum.extensions['askvortsov-rich-text']);
+
     if (flarum.extensions['askvortsov-rich-text']) { // implements for askvortsov-rich-text editor
       app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
 
@@ -183,8 +183,6 @@ export default class BookRefModal extends Modal {
       app.composer.editor.setEnter();
       app.composer.editor.delete();
 
-      // this.array[0] = "Alt ceva"
-      // console.log("rich-text");
     } else { // implements for flarum-markdown editor
       console.log(app.composer.editor.el.value);
       console.log(app.composer.fields.content());
@@ -226,8 +224,6 @@ export default class BookRefModal extends Modal {
 
       app.composer.editor.setSelectionRange(position[0], position[1]);
 
-      // console.log("non rich-text");
-      // app.composer.editor.moveCursorTo(app.composer.fields.content().length + 1);
     }
 
     app.modal.close();

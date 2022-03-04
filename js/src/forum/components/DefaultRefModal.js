@@ -25,7 +25,7 @@ export default class DefaultRefModal extends Modal {
   }
 
   title() {
-    return "De baza";
+    return app.translator.trans('flarum-references.forum.modal.ref_default_modal');
   }
 
   content() {
@@ -36,24 +36,21 @@ export default class DefaultRefModal extends Modal {
       m('.Modal-body',
         m('Form.Form--left',
         m('.Form-group',
-          m('label', app.translator.trans('Titlul')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_title_modal')),
           m('input.FormControl', {
             type: "text",
             value: this.fields.title(),
-            placeholder: "ex. Pădurea spânzuraților",
+            placeholder: "ex. Cultura în Evul Mediu",
             required: true,
             oninput: (e) => {
               this.fields.title(e.target.value);
               this.removeRedStyle();
-              // if (e.target.hasAttribute("style")) {
-              //   e.target.removeAttribute("style");
-              // }
             }
           },
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('Link')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_link_modal')),
           m('input.FormControl', {
             type: "url",
             placeholder: "ex. http://example.com",
@@ -108,7 +105,7 @@ export default class DefaultRefModal extends Modal {
     if (!this.areSetRequiredFields()) return;
 
     let date = new Date();
-    // console.log(flarum.extensions['askvortsov-rich-text']);
+
     if (flarum.extensions['askvortsov-rich-text']) { // implements for askvortsov-rich-text editor
       app.composer.editor.insertAtCursor("[ref id=ref" + ++this.referenceId + "]" + this.referenceId + "[/ref]");
 
@@ -142,8 +139,6 @@ export default class DefaultRefModal extends Modal {
       app.composer.editor.setEnter();
       app.composer.editor.delete();
 
-      // this.array[0] = "Alt ceva"
-      // console.log("rich-text");
     } else { // implements for flarum-markdown editor
       console.log(app.composer.editor.el.value);
       console.log(app.composer.fields.content());

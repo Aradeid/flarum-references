@@ -16,7 +16,7 @@ export default class ReferencesModal extends Modal {
   }
 
   title() {
-    return "Selectare tip referinta";
+    return app.translator.trans('flarum-references.forum.modal.ref_type_modal');
   }
 
   content() {
@@ -28,8 +28,7 @@ export default class ReferencesModal extends Modal {
               onclick: () => app.modal.show(SiteRefModal),
             },
               (<i class="icon fas fa-window-maximize Button-icon"></i>),
-              m('span', app.translator.trans('Site web')),
-              /* m('p', app.translator.trans('Site web')) */
+              m('span', app.translator.trans('flarum-references.forum.modal.ref_site_modal')),
             )
           ),
           m('.Form-group',
@@ -37,8 +36,7 @@ export default class ReferencesModal extends Modal {
               onclick: () => app.modal.show(BookRefModal),
             },
               (<i class="icon fas fa-book Button-icon"></i>),
-              m('span', app.translator.trans('Carte')),
-              /* m('p', app.translator.trans('Carte')) */
+              m('span', app.translator.trans('flarum-references.forum.modal.ref_book_modal')),
             )
           ),
           m('.Form-group',
@@ -46,8 +44,7 @@ export default class ReferencesModal extends Modal {
               onclick: () => app.modal.show(NewsRefModal),
             },
               (<i class="icon fas fa-newspaper Button-icon"></i>),
-              m('span', app.translator.trans('Stire')),
-              /* m('p', app.translator.trans('Stire')) */
+              m('span', app.translator.trans('flarum-references.forum.modal.ref_news_modal')),
             )
           ),
           m('.Form-group',
@@ -55,8 +52,7 @@ export default class ReferencesModal extends Modal {
               onclick: () => app.modal.show(JournalRefModal),
             },
               (<i class="icon fas fa-book-open Button-icon"></i>),
-              m('span', app.translator.trans('Jurnal')),
-              /* m('p', app.translator.trans('Jurnal')) */
+              m('span', app.translator.trans('flarum-references.forum.modal.ref_journal_modal')),
             )
           ),
           m('.Form-group',
@@ -64,8 +60,7 @@ export default class ReferencesModal extends Modal {
               onclick: () => app.modal.show(DefaultRefModal),
             },
               (<i class="icon fas fa-bookmark Button-icon"></i>),
-              m('span', app.translator.trans('De baza')),
-              /* m('p', app.translator.trans('De baza')) */
+              m('span', app.translator.trans('flarum-references.forum.modal.ref_default_modal')),
             )
           ),
         )

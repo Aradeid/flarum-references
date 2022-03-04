@@ -21,7 +21,7 @@ return [
     // (new Extend\Frontend('admin'))
     //     ->js(__DIR__.'/js/dist/admin.js')
     //     ->css(__DIR__.'/resources/less/admin.less'),
-    // new Extend\Locales(__DIR__ . '/resources/locale'),
+    new Extend\Locales(__DIR__ . '/resources/locale'),
     (new Extend\Formatter)
         ->configure(function(Configurator $config) {
             $config->BBCodes->addCustom(

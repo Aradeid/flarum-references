@@ -1,4 +1,4 @@
-import {extend} from 'flarum/common/extend';
+import { extend } from 'flarum/common/extend';
 import { baseKeymap } from 'tiptap-commands';
 import app from 'flarum/app';
 import TextEditor from 'flarum/common/components/TextEditor';
@@ -36,7 +36,7 @@ app.initializers.add('aradeid/flarum-references', () => {
       'references',
       Tooltip.component(
         {
-          text: "Referinta",
+          text: app.translator.trans('flarum-references.forum.composer.ref_button'),
         },
         Button.component(
           {
@@ -62,7 +62,7 @@ app.initializers.add('aradeid/flarum-references', () => {
               className: 'Button Button--secondary',
               onclick: () => app.modal.show(ReferencesModal),
           },
-          "Referinte"),
+          app.translator.trans('flarum-references.forum.composer.ref_button')),
     );
 
     items.add(
@@ -73,7 +73,7 @@ app.initializers.add('aradeid/flarum-references', () => {
           loading: this.loadingButton,
           onclick: () => this.linkControl(),
         },
-        "Control"
+        app.translator.trans('flarum-references.forum.composer.ref_ctrl_button')
       ),
     );
 
@@ -96,7 +96,7 @@ app.initializers.add('aradeid/flarum-references', () => {
     const allReferences = value.match(/\[reference\ id=[\w]* type=[\w]*\].*\[\/reference\]/gm);
     
     for (let i = 0; i < allReferences.length; i++) {
-      let tmp = allReferences[i].match(/(https?:\/\/)(\w+\.){1,}\w+[(\/(\w\-\_\+\.\?)+)]*/);
+      let tmp = allReferences[i].match(/(https?:\/\/)(\w+\.){1,}\w+[(\/(\w\-\_\+\%\.\?)+)]*/);
 
       if (tmp !== null) {
         allReferences[i] = tmp[0];
@@ -126,7 +126,7 @@ app.initializers.add('aradeid/flarum-references', () => {
         {
           type: 'success',
         },
-        app.translator.trans("Toate link-urile din referinte sunt accesibile!")
+        app.translator.trans('flarum-references.forum.composer.alert.success_alert')
       );
       this.loadingButton = false;
     } else {
@@ -136,13 +136,15 @@ app.initializers.add('aradeid/flarum-references', () => {
         })
         .filter(index => index >= 0)
         .map(index => index + 1);
+      let indexes = unaccesibleIndexes.join(', ');
       app.alerts.show(
         Alert,
         {
           type: 'warning',
         },
-        app.translator.trans("Link-urile din referintele " + unaccesibleIndexes.join(", ") + " nu sunt accesibile!")
-        // app.translator.trans("Unele link-uri din referinte nu sunt accesibile!")
+        (unaccesibleIndexes.length == 1) ?
+          app.translator.trans('flarum-references.forum.composer.alert.warning_alert_one', {indexes}) :
+          app.translator.trans('flarum-references.forum.composer.alert.warning_alert_more', {indexes})
       );
       this.loadingButton = false;
     }
