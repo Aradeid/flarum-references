@@ -36,7 +36,7 @@ export default class DefaultRefModal extends Modal {
       m('.Modal-body',
         m('Form.Form--left',
         m('.Form-group',
-          m('label', app.translator.trans('flarum-references.forum.modal.ref_title_modal')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_title_label')),
           m('input.FormControl', {
             type: "text",
             value: this.fields.title(),
@@ -50,7 +50,7 @@ export default class DefaultRefModal extends Modal {
           )
         ),
         m('.Form-group',
-          m('label', app.translator.trans('flarum-references.forum.modal.ref_link_modal')),
+          m('label', app.translator.trans('flarum-references.forum.modal.ref_link_label')),
           m('input.FormControl', {
             type: "url",
             placeholder: "ex. http://example.com",
